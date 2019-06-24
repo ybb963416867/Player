@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
  * Created by ywl on 2017-12-16.
  */
 
-public class WlShaderUtils {
+public class ShaderUtils {
 
     public static String readRawTextFile(Context context, int resId) {
         InputStream inputStream = context.getResources().openRawResource(resId);

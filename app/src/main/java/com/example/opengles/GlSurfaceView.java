@@ -10,25 +10,25 @@ import android.util.Log;
  * Created by hlwky001 on 2017/12/15.
  */
 
-public class WlGlSurfaceView extends GLSurfaceView{
+public class GlSurfaceView extends GLSurfaceView{
 
-    private WlGlRender wlGlRender;
-    private WlOnGlSurfaceViewOncreateListener onGlSurfaceViewOncreateListener;
+    private GlRender glRender;
+    private OnGlSurfaceViewOncreateListener onGlSurfaceViewOncreateListener;
 
-    public WlGlSurfaceView(Context context) {
+    public GlSurfaceView(Context context) {
         this(context, null);
     }
 
-    public WlGlSurfaceView(Context context, AttributeSet attrs) {
+    public GlSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        wlGlRender = new WlGlRender(context);
+        glRender = new GlRender(context);
         //设置egl版本为2.0
         setEGLContextClientVersion(2);
         //设置render
-        setRenderer(wlGlRender);
+        setRenderer(glRender);
         //设置为手动刷新模式
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-        wlGlRender.setWlOnRenderRefreshListener(new WlOnRenderRefreshListener() {
+        glRender.setOnRenderRefreshListener(new OnRenderRefreshListener() {
             @Override
             public void onRefresh() {
                 requestRender();
@@ -37,18 +37,18 @@ public class WlGlSurfaceView extends GLSurfaceView{
     }
 
 
-    public void setOnGlSurfaceViewOncreateListener(WlOnGlSurfaceViewOncreateListener onGlSurfaceViewOncreateListener) {
-        if(wlGlRender != null)
+    public void setOnGlSurfaceViewOncreateListener(OnGlSurfaceViewOncreateListener onGlSurfaceViewOncreateListener) {
+        if(glRender != null)
         {
-            wlGlRender.setWlOnGlSurfaceViewOncreateListener(onGlSurfaceViewOncreateListener);
+            glRender.setOnGlSurfaceViewOncreateListener(onGlSurfaceViewOncreateListener);
         }
     }
 
     public void setCodecType(int type)
     {
-        if(wlGlRender != null)
+        if(glRender != null)
         {
-            wlGlRender.setCodecType(type);
+            glRender.setCodecType(type);
         }
     }
 
@@ -56,9 +56,9 @@ public class WlGlSurfaceView extends GLSurfaceView{
     public void setFrameData(int w, int h, byte[] y, byte[] u, byte[] v)
     {
         Log.e("ybb","WlGSufaceView中的setFrameData");
-        if(wlGlRender != null)
+        if(glRender != null)
         {
-            wlGlRender.setFrameData(w, h, y, u, v);
+            glRender.setFrameData(w, h, y, u, v);
             requestRender();
         }else{
             Log.e("ybb","wlGlRender为空");
@@ -67,9 +67,9 @@ public class WlGlSurfaceView extends GLSurfaceView{
 
     public void cutVideoImg()
     {
-        if(wlGlRender != null)
+        if(glRender != null)
         {
-            wlGlRender.cutVideoImg();
+            glRender.cutVideoImg();
             requestRender();
         }
     }

@@ -4,7 +4,7 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 
-import com.example.opengles.WlGlSurfaceView;
+import com.example.opengles.GlSurfaceView;
 
 /**
  * 提供java进行播放  停止 等函数
@@ -17,7 +17,7 @@ public class Player {
     private String dataSource;
     private SurfaceHolder holder;
     private OnPrepareListener  listener;
-    private WlGlSurfaceView wlGlSurfaceView;
+    private GlSurfaceView glSurfaceView;
     /**
      * 渲染surface
      */
@@ -107,9 +107,9 @@ public class Player {
 
 
     //设置一个画图框架
-    public void setWlGlSurfaceView(WlGlSurfaceView wlGlSurfaceView) {
-        this.wlGlSurfaceView = wlGlSurfaceView;
-//        wlGlSurfaceView.setOnGlSurfaceViewOncreateListener(new WlOnGlSurfaceViewOncreateListener() {
+    public void setGlSurfaceView(GlSurfaceView glSurfaceView) {
+        this.glSurfaceView = glSurfaceView;
+//        wlGlSurfaceView.setOnGlSurfaceViewOncreateListener(new OnGlSurfaceViewOncreateListener() {
 //            @Override
 //            public void onGlSurfaceViewOncreate(Surface s) {
 //                if(surface == null)
@@ -139,11 +139,11 @@ public class Player {
     public void  setFrameData(int  w,int h, byte[] y, byte[] u, byte[] v){
         Log.e("ybb","调用了java setFrameData");
 
-        if(wlGlSurfaceView != null)
+        if(glSurfaceView != null)
         {
-            wlGlSurfaceView.setCodecType(0);
+            glSurfaceView.setCodecType(0);
             //调用软解码渲染界面
-            wlGlSurfaceView.setFrameData(w, h, y, u, v);
+            glSurfaceView.setFrameData(w, h, y, u, v);
         }else{
             Log.e("ybb","wlGlSurfaceView为空");
         }

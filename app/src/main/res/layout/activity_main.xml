@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-   <com.example.opengles.WlGlSurfaceView
+   <com.example.opengles.GlSurfaceView
        android:id="@+id/surfaceView"
        android:layout_width="match_parent"
        android:layout_height="200dp" />

@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.opengles.WlGlSurfaceView;
+import com.example.opengles.GlSurfaceView;
 
 public class MainActivity extends AppCompatActivity {
 
     private Player mPlayer;
     private Button play;
-    private WlGlSurfaceView surfaceView;
+    private GlSurfaceView surfaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         play = findViewById(R.id.btn_play);
         surfaceView = findViewById(R.id.surfaceView);
         mPlayer = new Player();
-        mPlayer.setWlGlSurfaceView(surfaceView);
+        mPlayer.setGlSurfaceView(surfaceView);
 //        dnPlayer.setSurfaceView(surfaceView);
         Button  stop=findViewById(R.id.btn_stop);
         stop.setOnClickListener(new View.OnClickListener() {
