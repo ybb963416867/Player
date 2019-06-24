@@ -10,6 +10,8 @@ import com.example.opengles.GlSurfaceView;
  * 提供java进行播放  停止 等函数
  */
 public class Player {
+    private  static   String   TAG="Player";
+
     static {
         System.loadLibrary("native-lib");
     }
@@ -137,7 +139,7 @@ public class Player {
     }
 
     public void  setFrameData(int  w,int h, byte[] y, byte[] u, byte[] v){
-        Log.e("ybb","调用了java setFrameData");
+        Log.e(TAG,"调用了java setFrameData");
 
         if(glSurfaceView != null)
         {
@@ -145,7 +147,7 @@ public class Player {
             //调用软解码渲染界面
             glSurfaceView.setFrameData(w, h, y, u, v);
         }else{
-            Log.e("ybb","wlGlSurfaceView为空");
+            Log.e(TAG,"wlGlSurfaceView为空");
         }
 
     }

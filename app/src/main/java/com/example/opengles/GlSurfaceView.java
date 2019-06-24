@@ -12,6 +12,7 @@ import android.util.Log;
 
 public class GlSurfaceView extends GLSurfaceView{
 
+    private static final String TAG = "GlSurfaceView";
     private GlRender glRender;
     private OnGlSurfaceViewOncreateListener onGlSurfaceViewOncreateListener;
 
@@ -55,13 +56,13 @@ public class GlSurfaceView extends GLSurfaceView{
 
     public void setFrameData(int w, int h, byte[] y, byte[] u, byte[] v)
     {
-        Log.e("ybb","WlGSufaceView中的setFrameData");
+        Log.e(TAG,"GSufaceView中的setFrameData");
         if(glRender != null)
         {
             glRender.setFrameData(w, h, y, u, v);
             requestRender();
         }else{
-            Log.e("ybb","wlGlRender为空");
+            Log.e(TAG,"GlRender为空");
         }
     }
 

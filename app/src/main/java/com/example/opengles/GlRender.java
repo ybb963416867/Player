@@ -29,6 +29,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GlRender implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameAvailableListener{
 
+    private static final String TAG = "GlRender";
     private Context context;
     private FloatBuffer vertexBuffer;
     private final float[] vertexData = {
@@ -128,7 +129,7 @@ public class GlRender implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameA
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        Log.d("ybb","onSurfaceCreated");
+        Log.d(TAG,"onSurfaceCreated");
         initMediacodecShader();
         initYuvShader();
         initStop();
@@ -136,7 +137,7 @@ public class GlRender implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameA
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        Log.d("ybb","onSurfaceChanged, width:" + width + ",height :" + height);
+        Log.d(TAG,"onSurfaceChanged, width:" + width + ",height :" + height);
         sWidth = width;
         sHeight = height;
         GLES20.glViewport(0,0,width, height);
@@ -145,7 +146,7 @@ public class GlRender implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameA
 
     @Override
     public void onDrawFrame(GL10 gl) {
-        Log.e("ybb","onDrawFrame");
+        Log.e(TAG,"onDrawFrame");
         //清屏
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         GLES20.glClearColor(0f, 0f, 0f, 1f);
@@ -153,13 +154,13 @@ public class GlRender implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameA
         {
             //硬解码
             renderMediacodec();
-            Log.d("ybb","mediaocdec.......");
+            Log.d(TAG,"mediaocdec.......");
         }
         else if(codecType == 0)
         {
             //软解码
             renderYuv();
-            Log.d("ybb","yuv.......");
+            Log.d(TAG,"yuv.......");
         }
         else
         {
@@ -180,7 +181,7 @@ public class GlRender implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameA
 
     @Override
     public void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        Log.d("ybb","updateSurface");
+        Log.d(TAG,"updateSurface");
         if(onRenderRefreshListener != null)
         {
             onRenderRefreshListener.onRefresh();
@@ -286,7 +287,7 @@ public class GlRender implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameA
             GLES20.glEnableVertexAttribArray(aTextureCoordHandle_yuv);
             GLES20.glVertexAttribPointer(aTextureCoordHandle_yuv,2,GLES20.GL_FLOAT,false,8, textureBuffer);
 
-            Log.d("ybb","renderFFmcodec");
+            Log.d(TAG,"renderFFmcodec");
             //使 GL_TEXTURE0 单元 活跃 opengl最多支持16个纹理
             //纹理单元是显卡中所有的可用于在shader中进行纹理采样的显存 数量与显卡类型相关，至少16个
             GLES20.glActiveTexture(GLES20.GL_TEXTURE0);

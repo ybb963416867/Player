@@ -16,6 +16,8 @@ import java.io.InputStreamReader;
 
 public class ShaderUtils {
 
+    private  static   String   TAG="ShaderUtils";
+
     public static String readRawTextFile(Context context, int resId) {
         InputStream inputStream = context.getResources().openRawResource(resId);
         try {
@@ -41,8 +43,8 @@ public class ShaderUtils {
             int[] compiled = new int[1];
             GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, compiled, 0);
             if (compiled[0] == 0) {
-                Log.d("ybb", "Could not compile shader " + shaderType + ":");
-                Log.d("ybb", GLES20.glGetShaderInfoLog(shader));
+                Log.d(TAG, "Could not compile shader " + shaderType + ":");
+                Log.d(TAG, GLES20.glGetShaderInfoLog(shader));
                 GLES20.glDeleteShader(shader);
                 shader = 0;
             }
@@ -70,8 +72,8 @@ public class ShaderUtils {
             int[] linkStatus = new int[1];
             GLES20.glGetProgramiv(program, GLES20.GL_LINK_STATUS, linkStatus, 0);
             if (linkStatus[0] != GLES20.GL_TRUE) {
-                Log.d("ybb", "Could not link program: ");
-                Log.d("ybb", GLES20.glGetProgramInfoLog(program));
+                Log.d(TAG, "Could not link program: ");
+                Log.d(TAG, GLES20.glGetProgramInfoLog(program));
                 GLES20.glDeleteProgram(program);
                 program = 0;
             }
@@ -82,7 +84,7 @@ public class ShaderUtils {
     public static void checkGlError(String label) {
         int error;
         while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-            Log.d("ybb", label + ": glError " + error);
+            Log.d(TAG, label + ": glError " + error);
             throw new RuntimeException(label + ": glError " + error);
         }
     }
